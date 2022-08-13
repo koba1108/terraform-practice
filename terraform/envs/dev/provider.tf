@@ -6,6 +6,15 @@ terraform {
       version = ">= 4.26.0"
     }
   }
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "ykoba"
+
+    workspaces {
+      name = "terraform-practice"
+    }
+  }
 }
 
 provider "aws" {
