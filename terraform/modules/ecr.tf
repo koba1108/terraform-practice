@@ -1,3 +1,3 @@
-resource "aws_ecr_repository" "omusubi-api-test" {
-  name = "omusubi-api-test"
+resource "aws_ecr_repository" "backend-test" {
+  name = "backend-test"
 }
