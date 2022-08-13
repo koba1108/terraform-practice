@@ -16,5 +16,5 @@ module "database" {
 
 module "auth" {
   source = "../../modules/auth"
-  prefix = "ykoba-cognito"
+  prefix = "ykoba-dev"
 }
