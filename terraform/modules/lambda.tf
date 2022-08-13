@@ -24,6 +24,7 @@ resource "aws_lambda_function" "backend-test" {
   role          = aws_iam_role.iam_for_lambda.arn
   package_type  = "Image"
   image_uri     = "${aws_ecr_repository.backend-test.repository_url}:latest"
+  architectures = "arm64"
   environment {
     variables = {
       PORT = 8080
