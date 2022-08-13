@@ -13,3 +13,8 @@ module "storage" {
 module "database" {
   source = "../../modules/database"
 }
+
+module "auth" {
+  source = "../../modules/auth"
+  prefix = "ykoba-cognito"
+}
