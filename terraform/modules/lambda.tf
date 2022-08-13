@@ -14,11 +14,21 @@ resource "aws_iam_role" "iam_for_lambda" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "lambda_role_policy_attach" {
+  role       = aws_iam_role.iam_for_lambda.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
 resource "aws_lambda_function" "backend-test" {
   function_name = "backend-test"
   role          = aws_iam_role.iam_for_lambda.arn
   package_type  = "Image"
   image_uri     = "${aws_ecr_repository.backend-test.repository_url}:latest"
+  environment {
+    variables = {
+      PORT = 8080
+    }
+  }
 }
 
 resource "aws_lambda_function_url" "test_latest" {
