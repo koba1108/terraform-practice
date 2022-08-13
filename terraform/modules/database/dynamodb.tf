@@ -19,12 +19,17 @@ resource "aws_dynamodb_table" "dynamodb-table-users" {
     type = "S"
   }
 
+  local_secondary_index {
+    name            = "PK-recordType"
+    range_key       = "recordType"
+    projection_type = "ALL"
+  }
+
   global_secondary_index {
-    name               = "recordType_SK"
-    hash_key           = "recordType"
-    range_key          = "SK"
-    billing_mode       = "PAY_PER_REQUEST"
-    projection_type    = "INCLUDE"
+    name            = "SK-PK"
+    hash_key        = "SK"
+    range_key       = "PK"
+    projection_type = "ALL"
   }
 
   tags = {
