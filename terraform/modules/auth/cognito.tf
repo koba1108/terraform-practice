@@ -22,12 +22,12 @@ resource "aws_cognito_user_pool" "ykoba-user-pool" {
   alias_attributes = ["email"]
 }
 
-resource "aws_cognito_user_pool_domain" "main" {
+resource "aws_cognito_user_pool_domain" "ykoba-user-pool-domain" {
   domain       = "${var.prefix}-client"
   user_pool_id = aws_cognito_user_pool.ykoba-user-pool.id
 }
 
-resource "aws_cognito_user_pool_client" "main" {
+resource "aws_cognito_user_pool_client" "ykoba-user-pool-client" {
   name            = "${var.prefix}-client"
   user_pool_id    = aws_cognito_user_pool.ykoba-user-pool.id
   generate_secret = false
@@ -47,13 +47,13 @@ resource "aws_cognito_user_pool_client" "main" {
   allowed_oauth_flows_user_pool_client = true
 }
 
-resource "aws_cognito_identity_pool" "main" {
+resource "aws_cognito_identity_pool" "ykoba-identity-pool" {
   identity_pool_name               = "${var.prefix}-id-pool"
   allow_unauthenticated_identities = false
   allow_classic_flow               = false
 
   cognito_identity_providers {
-    client_id               = aws_cognito_user_pool_client.main.id
+    client_id               = aws_cognito_user_pool_client.ykoba-user-pool-client.id
     provider_name           = aws_cognito_user_pool.ykoba-user-pool.endpoint
     server_side_token_check = false
   }
