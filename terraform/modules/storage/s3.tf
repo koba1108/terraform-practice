@@ -4,3 +4,10 @@ resource "aws_s3_bucket" "ykoba-terraform" {
     nane = "ykoba-terraform"
   }
 }
+
+resource "aws_s3_bucket" "ykoba-terraform-2" {
+  bucket = "ykoba-terraform-2"
+  tags = {
+    nane = "ykoba-terraform"
+  }
+}
