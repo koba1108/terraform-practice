@@ -20,3 +20,8 @@ resource "aws_lambda_function" "backend-test" {
   package_type  = "Image"
   image_uri     = "${aws_ecr_repository.backend-test.repository_url}:latest"
 }
+
+resource "aws_lambda_function_url" "test_latest" {
+  function_name      = aws_lambda_function.backend-test.function_name
+  authorization_type = "NONE"
+}
